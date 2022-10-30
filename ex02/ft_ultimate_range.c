@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 16:09:56 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/10/30 18:40:23 by dcarassi         ###   ########.fr       */
+/*   Created: 2022/10/30 18:53:19 by dcarassi          #+#    #+#             */
+/*   Updated: 2022/10/30 20:43:52 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int	*ft_range(int min, int max)
+int	ft_ultimate_range(int **range, int min, int max)
 {
-	int	range;
-	int	index;
-	int	*buffer;
+	int	limit;
+	int index;
+	int	*buffa;
+	int	*vector;
 
-	index = 0;
+	limit = 0;
 	if (min >= max)
-		return (0);
-	if (!buffer)
-		return (0);
-	range = max - min;
-	buffer = malloc(range * sizeof(int));
-	while (index < range)
 	{
-		buffer[index] = min + index;
+		*range = 0;
+		return (0);
+	}
+	limit = max - min;
+	vector = ( buffa = malloc(limit * sizeof(int)));
+	if (!vector)
+	{
+		*range = 0;
+		return (-1);
+	}
+	*range = buffa;
+	index = 0;
+	while (index < limit)
+	{
+		buffa[index] = min + index;
 		index++;
 	}
-	return (buffer);
+	return (limit);
 }
