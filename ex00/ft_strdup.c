@@ -6,7 +6,7 @@
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:17:28 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/11/01 20:54:02 by dcarassi         ###   ########.fr       */
+/*   Updated: 2022/11/01 20:59:19 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strdup(char *src)
 	int		i;
 
 	i = 0;
-	str = malloc((ft_strlen(src)) * sizeof(char + 1));
+	str = (char *)malloc((ft_strlen(src)) * sizeof(char + 1));
 	d = str;
 	if (!d)
 		return (0);
@@ -39,6 +39,6 @@ char	*ft_strdup(char *src)
 		str[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
+	str[i] = '\0';
 	return (str);
 }
