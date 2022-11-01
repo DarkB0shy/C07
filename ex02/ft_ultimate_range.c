@@ -6,7 +6,7 @@
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 18:53:19 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/10/30 20:43:52 by dcarassi         ###   ########.fr       */
+/*   Updated: 2022/11/01 17:12:48 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@
 int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	limit;
-	int index;
+	int	index;
 	int	*buffa;
-	int	*vector;
 
-	limit = 0;
 	if (min >= max)
 	{
 		*range = 0;
 		return (0);
 	}
 	limit = max - min;
-	vector = ( buffa = malloc(limit * sizeof(int)));
+	buffa = malloc(limit * sizeof(int));
 	if (!vector)
 	{
 		*range = 0;

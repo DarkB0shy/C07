@@ -5,99 +5,102 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 14:13:19 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/11/01 15:09:35 by dcarassi         ###   ########.fr       */
+/*   Created: 2022/11/01 18:22:55 by dcarassi          #+#    #+#             */
+/*   Updated: 2022/11/01 18:56:26 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int	get_w_length(char *str)
-{
-	int	i;
-	
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	ft_strcpy(char *dest, char *src)
+int	ft_strlen(char *src)
 {
 	int	i;
 
 	i = 0;
 	while (src[i])
-	{
-		dest[i] = src[i];
 		i++;
-	}
+	return (i);
 }
 
-int	get_f_length(char **strings, int size, int l_sep)
+char	*ft_strdup(char *src)
 {
-	int	i;
-	int	f_length;
+	char	*str;
+	int		i;
 
 	i = 0;
-	f_length = 0;
-	while (i < size)
+	str = malloc((ft_strlen(src) - 1) * sizeof(char));
+	if (!str)
+		return (0);
+	while (src[i])
 	{
-		f_length = f_length + get_w_length(strings[i]);
-		f_length = f_length + l_sep;
+		str[i] = src[i];
 		i++;
 	}
-	f_length = f_length - l_sep;
-	return (f_length);
+	return (str);
+}
+
+char	*ft_strcat(char *dest, char *src)
+{
+	int	c;
+	int	i;
+
+	i = 0;
+	c = ft_strlen(dest);
+	while (src[i] != '\0')
+	{
+		dest[c] = src[i];
+		c++;
+		i++;
+	}
+	dest[c] = 0;
+	return (dest);
+}
+
+int	get_f_length(char **strs, char *sep, int size)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	while (i < size)
+	{
+		count = count + ft_strlen(strs[i]);
+		i++;
+	}
+	i = 0;
+	while (i < size - 1)
+	{
+		count = count + ft_strlen(sep);
+		i++;
+	}
+	return (count);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int	i;
-	int	f_length;
-	char	*string;
-	char	*d;
+	int		i;
+	char	*tocopy;
+	char	*ret;
+	int		f_length;
 
+	f_length = get_f_length(strs, sep, size);
+	tocopy = (char *) malloc (f_length * sizeof(char));
+	ret = (char *) malloc (f_length * sizeof(char));
 	if (size == 0)
-		return ((char *)malloc(size * sizeof(char)));
-	f_length = get_f_length(strs, size, get_w_length(sep));
-	d = (string = (char *)malloc((f_length + 1)* sizeof(char)));
-	if (!d)
-		return (0);
+		return (ret);
 	i = 0;
 	while (i < size)
 	{
-		ft_strcpy(d, strs[i]);
-		d = d + get_w_length(strs[i]);
+		tocopy = ft_strdup(strs[i]);
+		ret = ft_strcat(ret, tocopy);
 		if (i < size - 1)
 		{
-			ft_strcpy(d, sep);
-			d = d + get_w_length(sep);
+			tocopy = ft_strdup(sep);
+			ret = ft_strcat(ret, tocopy);
 		}
 		i++;
 	}
-	return (string);
-}
-
-int	main (void)
-{
-	char	**strs;
-	char	*sepo;
-	char	*result;
-	int	size;
-
-	size = 3;
-	strs = (char **)malloc(size * sizeof(char *));
-	strs[0] = (char *)malloc(6 * sizeof(char));
-	strs[1] = (char *)malloc(6 * sizeof(char));
-	strs[2] = (char *)malloc(7 * sizeof(char));
-	sepo = "Burp";
-	strs[0] = "Wubba";
-	strs[1] = "lubba";
-	strs[2] = "dubdub";
-	result = ft_strjoin(size, strs, sepo);
-	printf("%s", result);
-	free(result);
-	return (0);
+	return (ret);
 }
