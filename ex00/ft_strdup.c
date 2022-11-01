@@ -6,7 +6,7 @@
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:17:28 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/10/30 16:58:56 by dcarassi         ###   ########.fr       */
+/*   Updated: 2022/11/01 20:54:02 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,19 @@ int	ft_strlen(char *src)
 char	*ft_strdup(char *src)
 {
 	char	*str;
+	char	*d;
 	int		i;
 
 	i = 0;
-	str = malloc((ft_strlen(src) - 1) * sizeof(char));
-	if (!str)
+	str = malloc((ft_strlen(src)) * sizeof(char + 1));
+	d = str;
+	if (!d)
 		return (0);
 	while (src[i])
 	{
 		str[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
 	return (str);
 }
