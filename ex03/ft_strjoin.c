@@ -6,7 +6,7 @@
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:22:55 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/11/02 09:23:25 by dcarassi         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:18:54 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@ int	ft_strlen(char *src)
 	while (src[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*str;
-	int		i;
-	char	*buffa;
-
-	i = 0;
-	str = (char *)malloc(ft_strlen(src) * sizeof(char) + 1);
-	buffa = str;
-	if (!buffa)
-		return (0);
-	while (src[i])
-	{
-		str[i] = src[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
 }
 
 char	*ft_strcat(char *dest, char *src)
@@ -81,27 +61,43 @@ int	get_f_length(char **strs, char *sep, int size)
 	return (count);
 }
 
+char	*ft_strdup(char *src)
+{
+	int		index;
+	char	*dest;
+	char	*buffa;
+
+	index = 0;
+	dest = (char *)malloc(ft_strlen(src) * sizeof(char) + 1);
+	buffa = dest;
+	if (!buffa)
+		return (0);
+	while (src[index])
+	{
+		dest[index] = src[index];
+		index++;
+	}
+	dest[index] = '\0';
+	return (dest);
+}
+
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	int		i;
-	char	*tocopy;
 	char	*ret;
 	int		f_length;
 
 	f_length = get_f_length(strs, sep, size);
-	tocopy = (char *) malloc (f_length * sizeof(char));
 	ret = (char *) malloc (f_length * sizeof(char));
 	if (size == 0)
 		return (ret);
 	i = 0;
 	while (i < size)
 	{
-		tocopy = ft_strdup(strs[i]);
-		ret = ft_strcat(ret, tocopy);
+		ret = ft_strcat(ret, ft_strdup(strs[i]));
 		if (i < size - 1)
 		{
-			tocopy = ft_strdup(sep);
-			ret = ft_strcat(ret, tocopy);
+			ret = ft_strcat(ret, ft_strdup(sep));
 		}
 		i++;
 	}
