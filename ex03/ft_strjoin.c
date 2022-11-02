@@ -6,7 +6,7 @@
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:22:55 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/11/02 10:18:54 by dcarassi         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:15:35 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,6 @@ int	get_f_length(char **strs, char *sep, int size)
 	return (count);
 }
 
-char	*ft_strdup(char *src)
-{
-	int		index;
-	char	*dest;
-	char	*buffa;
-
-	index = 0;
-	dest = (char *)malloc(ft_strlen(src) * sizeof(char) + 1);
-	buffa = dest;
-	if (!buffa)
-		return (0);
-	while (src[index])
-	{
-		dest[index] = src[index];
-		index++;
-	}
-	dest[index] = '\0';
-	return (dest);
-}
-
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	int		i;
@@ -94,10 +74,10 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	i = 0;
 	while (i < size)
 	{
-		ret = ft_strcat(ret, ft_strdup(strs[i]));
+		ret = ft_strcat(ret, strs[i]);
 		if (i < size - 1)
 		{
-			ret = ft_strcat(ret, ft_strdup(sep));
+			ret = ft_strcat(ret, sep);
 		}
 		i++;
 	}
