@@ -6,12 +6,11 @@
 /*   By: dcarassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:22:55 by dcarassi          #+#    #+#             */
-/*   Updated: 2022/11/02 13:15:35 by dcarassi         ###   ########.fr       */
+/*   Updated: 2022/11/03 11:28:23 by dcarassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int	ft_strlen(char *src)
 {
